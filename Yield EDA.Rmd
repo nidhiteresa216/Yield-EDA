@@ -1,0 +1,53 @@
+---
+title: "Yield EDA"
+author: "NIdhi Teresa"
+date: "21/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Import Libraries
+
+```{r}
+# importing all the necessary libraries
+library(tsibble)
+library(tidyverse)
+library(plotly)
+```
+
+## Import dataset
+- Yield shown is in tons per hecter
+```{r}
+# CREATE THE DATAFRAME
+data <- read_csv('Yield.csv')
+data <- data_frame(data)
+head(data)
+```
+
+## Check for Null Values
+
+```{r}
+#CHECK FOR NULL VALUES IN THE DF
+is.null(data) 
+```
+
+```{r}
+#Number of Cases each week
+fig <- plot_ly(data, x = ~Week, y = ~Yield, type = 'scatter', mode='lines+markers')
+fig
+```
+
+```{r}
+#Age v/s Number of cases
+fig_1 <- plot_ly(data, x = ~Area, y = ~Yield, type = 'bar')
+fig_1
+```
+
+## Conclusion
+- The yield had a hike in the month of April and June but declined in the month of September.
+- The are required for 2 tons of yield is higher.
+
